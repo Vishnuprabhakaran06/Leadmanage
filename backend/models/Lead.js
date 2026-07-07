@@ -34,7 +34,7 @@ const leadSchema = new mongoose.Schema(
     status: {
       type: String,
       enum: {
-        values: ['New', 'Contacted', 'Qualified', 'Converted', 'Lost'],
+        values: ['New', 'Contacted', 'Qualified', 'Proposal', 'Won', 'Converted', 'Lost'],
         message: '{VALUE} is not a valid status',
       },
       default: 'New',

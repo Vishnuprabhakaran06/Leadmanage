@@ -96,7 +96,7 @@ exports.updateLead = async (req, res, next) => {
       }
     }
     if (status !== undefined) {
-      const validStatuses = ['New', 'Contacted', 'Qualified', 'Converted', 'Lost'];
+      const validStatuses = ['New', 'Contacted', 'Qualified', 'Proposal', 'Won', 'Converted', 'Lost'];
       if (!validStatuses.includes(status)) {
         errors.status = `Status must be one of: ${validStatuses.join(', ')}`;
       }
