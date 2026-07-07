@@ -16,17 +16,24 @@ app.use(
     origin: (origin, callback) => {
       // Allow requests with no origin (curl, Postman, server-to-server)
       if (!origin) return callback(null, true);
-      // Allow any localhost or 127.0.0.1 origin
-      if (/^https?:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/.test(origin)) {
+
+      const allowedOrigins = [
+        'https://lead-management-system-bixk.onrender.com', // deployed frontend
+      ];
+
+      // Allow any localhost or 127.0.0.1 origin (for local dev)
+      const isLocalhost = /^https?:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/.test(origin);
+
+      if (isLocalhost || allowedOrigins.includes(origin)) {
         return callback(null, true);
       }
+
       callback(new Error(`CORS not allowed for origin: ${origin}`));
     },
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
     credentials: true,
   })
 );
-
 app.use(express.json());
 
 // ─── Routes ─────────────────────────────────────────────────────────────────────
