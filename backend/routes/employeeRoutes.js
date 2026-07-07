@@ -4,4 +4,5 @@ const { getEmployees } = require('../controllers/employeeController');
 
 router.get('/', getEmployees);
 
+
 module.exports = router;
